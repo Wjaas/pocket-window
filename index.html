@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2eb">
+  <meta name="description" content="Pocket Window helps students turn short gaps between classes into focused progress.">
+  <title>Pocket Window — make the gap count</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Pocket Window home"><span class="brand-mark" aria-hidden="true">◩</span><span>Pocket<span class="brand-light">Window</span></span></a>
+      <div class="header-right"><span class="header-label">A study companion for the in-between</span><span class="local-pill"><span class="local-dot"></span> Saved on this device</span></div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="eyebrow-line"></span> YOUR TIME, WELL SPENT</span>
+          <h1 id="hero-title">A little time<br>can go a <em>long way.</em></h1>
+          <p>That hour between lectures? Make it yours. Tell us what time and energy you have, and find one thing worth doing.</p>
+          <a class="hero-link" href="#find-window">Find your next step <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="arch arch-one"></div><div class="arch arch-two"></div><div class="arch arch-three"></div><div class="sun"></div><div class="art-caption">Small windows.<br>Real progress.</div><span class="art-star star-one">✳</span><span class="art-star star-two">✳</span></div>
+      </section>
+
+      <section class="dashboard" aria-label="Your study dashboard">
+        <div class="section-heading"><div><span class="section-kicker">01 / START HERE</span><h2 id="find-window">Find your window</h2></div><p>Match a task to the moment you have right now.</p></div>
+        <div class="matcher-layout">
+          <div class="match-card">
+            <div class="field-label">I have about</div>
+            <div class="choice-row" id="time-choices" role="group" aria-label="Available time"><button class="choice" data-minutes="15" type="button">15 min</button><button class="choice selected" data-minutes="30" type="button">30 min</button><button class="choice" data-minutes="45" type="button">45 min</button><button class="choice" data-minutes="60" type="button">60 min</button></div>
+            <div class="field-label energy-label">My energy is</div>
+            <div class="choice-row" id="energy-choices" role="group" aria-label="Energy level"><button class="choice" data-energy="low" type="button">◔ &nbsp; Low</button><button class="choice selected" data-energy="medium" type="button">◑ &nbsp; Medium</button><button class="choice" data-energy="high" type="button">● &nbsp; High</button></div>
+            <button class="primary-button" id="find-button" type="button">Find a task <span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="recommendation" id="recommendation" aria-live="polite"><div class="rec-top"><span class="rec-icon">✳</span><span>YOUR NEXT STEP</span></div><div id="rec-content"><h3>Make space for a win.</h3><p>Add a few tasks, then find one that fits your window.</p></div><div class="rec-bottom"><span>ONE THING AT A TIME</span><span aria-hidden="true">↗</span></div></div>
+        </div>
+      </section>
+
+      <section class="tasks-section" aria-labelledby="tasks-title"><div class="section-heading"><div><span class="section-kicker">02 / YOUR PLAN</span><h2 id="tasks-title">The things on your mind<span class="count-badge" id="task-count">0</span></h2></div><button class="outline-button" id="add-button" type="button">+ Add a task</button></div><div class="task-toolbar"><div class="tabs" role="group" aria-label="Filter tasks"><button type="button" class="tab active" data-filter="open">To do</button><button type="button" class="tab" data-filter="completed">Completed</button><button type="button" class="tab" data-filter="all">All</button></div><span class="toolbar-hint">Your plans stay in this browser.</span></div><div id="task-list" class="task-list" aria-live="polite"></div></section>
+
+      <section class="focus-section" aria-labelledby="focus-title"><div class="section-heading"><div><span class="section-kicker">03 / MAKE IT HAPPEN</span><h2 id="focus-title">Focus for a while</h2></div><p>Start small. You can pause whenever you need.</p></div><div class="focus-panel"><div class="focus-left"><span class="focus-overline">CURRENT FOCUS</span><h3 id="focus-task">Choose a task to begin</h3><p id="focus-note">Pick a recommendation above, or start from your task list.</p><div class="focus-controls"><button class="primary-button" id="timer-toggle" type="button" disabled>Start focus</button><button class="text-button" id="timer-reset" type="button" disabled>Reset</button><button class="text-button" id="finish-button" type="button" disabled>Mark complete</button></div></div><div class="timer-face"><div class="timer-ring"><span id="timer-display" role="timer" aria-live="off">00:00</span><small>MINUTES LEFT</small></div></div></div></section>
+
+      <section class="summary" aria-label="Your progress"><div><span class="summary-label">YOUR PROGRESS</span><h2>Every small step adds up.</h2></div><div class="summary-stat"><strong id="done-count">0</strong><span>tasks completed</span></div><div class="summary-stat"><strong id="minutes-count">0</strong><span>minutes of focused work</span></div></section>
+    </main>
+    <footer><span>◩ &nbsp; Pocket Window</span><span>Made for the moments between.</span></footer>
+  </div>
+
+  <dialog id="task-dialog" aria-labelledby="dialog-title"><form id="task-form" novalidate><div class="dialog-header"><div><span class="section-kicker">YOUR PLAN</span><h2 id="dialog-title">Add a task</h2></div><button type="button" class="close-button" id="close-dialog" aria-label="Close">×</button></div><label for="task-title">What do you need to do?</label><input id="task-title" name="title" maxlength="90" required placeholder="e.g. Review lecture notes"><label for="task-duration">How long will it take?</label><select id="task-duration" name="duration"><option value="15">15 minutes</option><option value="30" selected>30 minutes</option><option value="45">45 minutes</option><option value="60">60 minutes</option><option value="90">90 minutes</option><option value="120">120 minutes</option></select><label for="task-energy">Energy needed</label><select id="task-energy" name="energy"><option value="low">Low — easy to start</option><option value="medium" selected>Medium — some focus</option><option value="high">High — deep thinking</option></select><label for="task-due">Due date <span class="optional">optional</span></label><input id="task-due" name="due" type="date"><p id="form-error" class="form-error" role="alert" hidden></p><div class="dialog-actions"><button type="button" class="text-button" id="cancel-dialog">Cancel</button><button type="submit" class="primary-button" id="save-task">Save task</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
